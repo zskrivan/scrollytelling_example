@@ -61,9 +61,14 @@
 			</svg>
 		</div>
 		<div class="steps">
-			<div class="step">My favorite color is gray.</div>
-			<div class="step">But blue is kinda nice.</div>
-			<div class="step">And who can argue with a nice shade of orange?</div>
+			<div class="step" data-color="#ddd">My favorite color is gray.</div>
+			<div class="step" data-color="blue">But blue is kinda nice.</div>
+			<div class="step" data-color="#FF9900">And who can argue with a nice shade of orange?</div>
+		</div>
+	</section>
+	<section>
+		<div class="steps">
+			<div>The End.</div>
 		</div>
 	</section>
 
@@ -74,20 +79,12 @@
 		scroller
 			.setup({
 				step: '.step',
-                debug:  false,
-                offset:  0.25
 			})
 			.onStepEnter((response) => {
 				console.log(response)
-                if(response.index == 0){
-                    document.getElementById('rectObj').style.fill = 'gray';
-                } else if(response.index == 1){
-                    document.getElementById('rectObj').style.fill = 'blue';
-                } else if(response.index == 2){
-                    document.getElementById('rectObj').style.fill = 'orange';
-                }
+                document.getElementById('rectObj').setAttribute('fill', response.element.dataset.color);
 			})
-			window.addEventListener('resize', scroller.resize);
+			window.addEventListener("resize", scroller.resize);
 	</script>
 
 
