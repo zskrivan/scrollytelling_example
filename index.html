@@ -78,6 +78,8 @@
 			<div>But it's not just about color, shape also matters!</div>
 			<div class="step" data-value=50 data-attribute="r" data-target="circObj">And size!</div>
 			<div class="step" data-value=0.5 data-attribute="opacity" data-target="circObj">And opacity...</div>
+			<div class="step" data-type="progressive" data-attribute="r" data-target="circObj">But wait, there's more...<br />
+			Wouldn't it be REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br />REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> REALLY<br /> nice if, as you scrolled, attributes could change dynamically?</div>
 		</div>
 	</section>
 
@@ -94,11 +96,18 @@
 		scroller
 			.setup({
 				step: '.step',
+                progress:  true
 			})
 			.onStepEnter((response) => {
-				console.log(response)
+				console.log(response);
 				document.getElementById(response.element.dataset.target).setAttribute(response.element.dataset.attribute, response.element.dataset.value);
 			})
+            .onStepProgress((response) => {
+                if(response.element.dataset.type == 'progressive'){
+                    console.log(response);
+                    document.getElementById(response.element.dataset.target).setAttribute(response.element.dataset.attribute, response.progress * 100);
+                }
+            });
 			window.addEventListener("resize", scroller.resize);
 	</script>
 
