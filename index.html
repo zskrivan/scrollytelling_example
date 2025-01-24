@@ -24,87 +24,48 @@
                 font-size: 1.4em;
             }
             section{
-                height: 100%;
-            }
-            div{
-                height: 100%;
                 max-width: 1000px;
-                margin: 50px auto;
-                text-align: center;
+                margin: 20% auto;
+            }
+            section:not(:first-of-type){
+                max-width: 1000px;
+                margin: 50% auto;
+            }
+            section div{
+                display: inline-block;
                 padding: 50px;
+                margin-bottom: 100%;
             }
-            div.step{
-                background: #fff;
-                color: #fff;
+            section div.steps{
+                max-width: 500px;
             }
-            div.step.active{
-                background:  #FF9900;
-                transition:  1s linear all;
-            }
-            div.step.blue{
-                background: blue;
-                transition: 1s linear all;
-            }
-            div.step.active.blinky{
-                animation: blinker 1s step-start infinite;
-            }
-            @keyframes blinker {
-            50% {
-                opacity: 0;
-            }
-            }
-            div.step.inactive{
-                background:  #fff;
-                transition:  1s linear all;
+            section div.visual{
+                float: right;
+                position: -webkit-sticky;
+                position: sticky;
+                top: 0;
             }
         </style>
     </head>
     <body>
-        <!-- Responsive navbar-->
-        <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav> -->
 
+    <!-- Bootstrap core JavaScript from Melanie's code-->
+    <script src="vendor/jquery/jquery.slim.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Page content
-        <div class="container">
-            <div class="text-center mt-5">
-                <h1>A Bootstrap 5 Starter Template</h1>
-                <p class="lead">A complete project boilerplate built with Bootstrap</p>
-                <p>Bootstrap v5.2.3</p>
-            </div>
-        </div> -->
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-
-    <section>
-        <div><h1>A Simple Scrollytelling Experience</h1></div>
-        <div class="step"><p>As objects scroll into view...</p></div>
-        <div class="step blue"><p>...they change appearance...</p></div>
-        <div class="step blinky"><p>...and draw attention to themselves...</p></div>
-        <div class="step"><p>...and if you didn't notice...</p></div>
-        <div class="step"><p>...the old ones can disappear...</p></div>
-    </section>
+	<section><h2>A More Complex Scrollytelling Experience</h2></section>
+	<section>
+		<div class="visual">
+			<svg width=200 height=200>
+				<rect id="rectObj" width=200 height=200 x=0 y=0 fill="#ddd">
+			</svg>
+		</div>
+		<div class="steps">
+			<div class="step">My favorite color is gray.</div>
+			<div class="step">But blue is kinda nice.</div>
+			<div class="step">And who can argue with a nice shade of orange?</div>
+		</div>
+	</section>
 
 
 	<script type="text/javascript">
@@ -118,14 +79,14 @@
 			})
 			.onStepEnter((response) => {
 				console.log(response)
-				response.element.classList.add('active');
-				response.element.classList.remove('inactive');
+                if(response.index == 0){
+                    document.getElementById('rectObj').style.fill = 'gray';
+                } else if(response.index == 1){
+                    document.getElementById('rectObj').style.fill = 'blue';
+                } else if(response.index == 2){
+                    document.getElementById('rectObj').style.fill = 'orange';
+                }
 			})
-			.onStepExit((response) => {
-				console.log(response)
-				response.element.classList.add('inactive');
-				response.element.classList.remove('active');
-			});
 			window.addEventListener('resize', scroller.resize);
 	</script>
 
