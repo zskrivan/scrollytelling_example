@@ -61,11 +61,26 @@
 			</svg>
 		</div>
 		<div class="steps">
-			<div class="step" data-color="#ddd">My favorite color is gray.</div>
-			<div class="step" data-color="blue">But blue is kinda nice.</div>
-			<div class="step" data-color="#FF9900">And who can argue with a nice shade of orange?</div>
+			<div class="step" data-value="#ddd" data-attribute="fill" data-target="rectObj">My favorite color is gray.</div>
+			<div class="step" data-value="blue" data-attribute="fill" data-target="rectObj">But blue is kinda nice.</div>
+			<div class="step" data-value="#FF9900" data-attribute="fill" data-target="rectObj">And who can argue with a nice shade of orange?</div>
 		</div>
 	</section>
+
+
+	<section>
+		<div class="visual">
+			<svg width=200 height=200>
+				<circle id="circObj" r=100 cx=100 cy=100 fill="#ff9900">
+			</svg>
+		</div>
+		<div class="steps">
+			<div>But it's not just about color, shape also matters!</div>
+			<div class="step" data-value=50 data-attribute="r" data-target="circObj">And size!</div>
+			<div class="step" data-value=0.5 data-attribute="opacity" data-target="circObj">And opacity...</div>
+		</div>
+	</section>
+
 	<section>
 		<div class="steps">
 			<div>The End.</div>
@@ -82,7 +97,7 @@
 			})
 			.onStepEnter((response) => {
 				console.log(response)
-                document.getElementById('rectObj').setAttribute('fill', response.element.dataset.color);
+				document.getElementById(response.element.dataset.target).setAttribute(response.element.dataset.attribute, response.element.dataset.value);
 			})
 			window.addEventListener("resize", scroller.resize);
 	</script>
